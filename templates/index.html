@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Control Keylogger</title>
+</head>
+
+<body>
+    <h1>Keylogger Control</h1>
+
+    <button id="toggleButton" onclick="activateKeylogger()">Activar Keylogger</button>
+
+    <script>
+        function activateKeylogger() {
+            fetch('/toggle_keylogger', {
+                method: 'POST',
+                headers: {
+                    'Content-Type': 'application/json'
+                }
+            })
+                .then(response => response.json())
+                .then(data => {
+                    if (data.status === "active") {
+                        document.getElementById("toggleButton").innerText = "Desactivar Keylogger";
+                    } else {
+                        document.getElementById("toggleButton").innerText = "Keylogger ya está activo";
+                    }
+                });
+        }
+    </script>
+</body>
+
+</html>
